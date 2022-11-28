@@ -51,6 +51,7 @@
      * number)
      */
     const isTwo = num => num === 2;
+    console.log(random);
     console.log(isTwo(random));
 
     /**
