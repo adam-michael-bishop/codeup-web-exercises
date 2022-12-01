@@ -8,7 +8,6 @@
     }
 
     function generateTenRandomNumbers(minNumber, maxNumber) {
-
         for (let i = 0; i < 10; i++) {
             let randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber)
             if (randomNumber % 2 === 0) {
@@ -20,9 +19,7 @@
     }
 
     function numberPyramid(length) {
-
         for (let i = 1; i <= length; i++) {
-
             let numberString = '';
             for (let j = i; j > 0; j--) {
                 numberString += `${i}`;
@@ -33,9 +30,7 @@
 
     function decrementByFive(number) {
         for (let i = number; i > 0; i -= 5) {
-
             console.log(i);
-
         }
     }
 
