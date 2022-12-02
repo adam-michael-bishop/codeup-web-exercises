@@ -29,7 +29,7 @@
     let newPlanetsString = planetsArray.join("<br>");
     console.log(newPlanetsString);
 
-    let planetsList = `<ul>${planetsArray.join("<li>")}</ul>`;
+    let planetsList = `<ul><li>${planetsArray.join("</li><li>")}</li></ul>`;
     console.log(planetsList);
 
     const template = document.createElement('div');
