@@ -2,3 +2,21 @@
     color: purple; /* single line comment */
     text-decoration: underline;
 }
+
+#top h1 {
+    text-align: center;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    text-decoration: underline;
+    color: #0084bd;
+}
+
+body {
+    background-color: #e1c9a1;
+    background-image: url("../img/github-logo.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: right 5% top 1em;
+}
