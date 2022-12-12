@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Register With Us</title>
+</head>
+<body>
+<main>
+<form method="POST" action="https://request-inspector.glitch.me/">
+  <label for="email">email:</label>
+  <input type="text" id="email" name="user_email">
+  <br>
+  <label for="password">password: </label>
+  <input type="password" id="password" name="user_pw">
+  <br>
+  <input type="submit">
+</form>
+<br>
+<form method="POST" action="https://request-inspector.glitch.me/">
+	<label for="bio">Write a bio about yourself below.</label>
+	<br>
+	<textarea id="bio" name="bio"></textarea>
+	<input type="submit">
+</form>
+<form method="POST" action="https://request-inspector.glitch.me/">
+	<h4>How did you hear about us?</h4>
+	<label>
+		Billboard Ad<input type="radio" name="ad_survey" value="billboard">
+	</label>
+	<br>
+	<label>
+	Radio Ad<input type="radio" name="ad_survey" value="radio">
+	</label>
+	<br>
+	<label>
+		Internet Ad<input type="radio" name="ad_survey" value="internet">
+	</label>
+	<br>
+	<label>
+		Other<input type="radio" name="ad_survey" value="other">
+	</label>
+	<br>
+	<input type="submit">
+</form>
+<br>
+<form method="POST" action="https://request-inspector.glitch.me/">
+	<h4>How did you hear about us? (Checkboxes)</h4>
+	<label>
+		Billboard Ad<input type="checkbox" name="ad_survey" value="billboard">
+	</label>
+	<br>
+	<label>
+	Radio Ad<input type="checkbox" name="ad_survey" value="radio">
+	</label>
+	<br>
+	<label>
+		Internet Ad<input type="checkbox" name="ad_survey" value="internet">
+	</label>
+	<br>
+	<label>
+		Other<input type="checkbox" name="ad_survey" value="other">
+	</label>
+	<br>
+	<input type="submit">
+</form>
+<br>
+<form method="POST" action="https://request-inspector.glitch.me/">
+	<h4>What browser are you using?</h4>
+	<select name="user_browser">
+		<option value="chrome">Google Chrome</option>
+		<option value="firefox">Mozilla Firefox</option>
+		<option value="safari">Safari</option>
+		<option value="edge">Microsoft Edge</option>
+		<option value="opera">Opera</option>
+		<option value="other">Other</option>
+	</select>
+	<br>
+	<input type="submit">
+</form>
+</main>
+</body>
+</html>
