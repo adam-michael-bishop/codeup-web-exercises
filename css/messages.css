@@ -1,3 +1,16 @@
+:root {
+    /*color variables*/
+    --message-border: #cad0cd;
+    --text-info: #3b3492;
+    --bg-info: #c6d6f5;
+    --text-success: #348155;
+    --bg-success: #c8ead2;
+    --text-warning: #94832d;
+    --bg-warning: #fcfbcb;
+    --text-error: #9c4152;
+    --bg-error: #fbd2d6;
+}
+
 body, html {
     height: 100%;
     width: 100%;
@@ -7,13 +20,28 @@ body, html {
 }
 
 .message {
-    border: 1px solid lightgray;
+    border: 1px solid var(--message-border);
     border-radius: 5px;
     margin: .5em;
     padding: .4em;
 }
 
 .message-info {
-    color: #0000FF;
-    background-color: #2c2c2c;
+    color: var(--text-info);
+    background-color: var(--bg-success);
+}
+
+.message-success {
+    color: var(--text-success);
+    background-color: var(--bg-success);
+}
+
+.message-warning {
+    color: var(--text-warning);
+    background-color: var(--bg-warning);
+}
+
+.message-error {
+    color: var(--text-error);
+    background-color: var(--bg-error);
 }
