@@ -37,6 +37,20 @@ th {
 th, td {
     padding: 0.25em;
     border: 1px solid;
-    background: rgb(63,94,251);
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+
+a:link {
+    color: #00F;
+}
+
+a:visited {
+    color: #b600b6;
+}
+
+a:hover {
+    color: #F00;
+}
+
+a:active {
+    color: #0F0;
 }
