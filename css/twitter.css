@@ -74,11 +74,11 @@ a {
     margin: var(--float-margin);
 }
 .profile-items {
-    padding: 0px;
+    padding: 0;
     list-style: none;
 }
 .profile-entry {
-    margin: .5em 0em;
+    margin: .5em 0;
 }
 .timeline {
     float: left;
