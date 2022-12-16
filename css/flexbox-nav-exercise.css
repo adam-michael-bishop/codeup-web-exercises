@@ -4,6 +4,7 @@ html, body {
 nav {
     background-color: #c1c1c1;
     display: flex;
+    justify-content: space-between;
 }
 nav * {
     box-sizing: border-box;
@@ -24,21 +25,15 @@ a:hover {
 }
 .nav-right {
     display: flex;
-    justify-content: space-evenly;
-}
-.logo {
-    margin: auto;
-    font-size: 3em;
-    padding: .2em;
-    text-align: center;
-    align-self: center;
 }
 .logo a{
     font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+    padding: .2em;
 }
 .nav-img {
-    width: 15px;
-    height: 15px;
+    width: 1em;
+    height: 1em;
 }
 
 
