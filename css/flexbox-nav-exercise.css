@@ -1,0 +1,45 @@
+html, body {
+    margin: 0;
+}
+nav {
+    background-color: #c1c1c1;
+    display: flex;
+}
+nav * {
+    box-sizing: border-box;
+}
+a {
+    margin: auto;
+    display: inline-block;
+    padding: .25em;
+    font-family: 'Work Sans', sans-serif;
+    color: unset;
+    text-decoration: none;
+}
+a:hover {
+    color: blue;
+}
+.nav-left {
+    display: flex;
+}
+.nav-right {
+    display: flex;
+    justify-content: space-evenly;
+}
+.logo {
+    margin: auto;
+    font-size: 3em;
+    padding: .2em;
+    text-align: center;
+    align-self: center;
+}
+.logo a{
+    font-family: 'Montserrat', sans-serif;
+}
+.nav-img {
+    width: 15px;
+    height: 15px;
+}
+
+
+
