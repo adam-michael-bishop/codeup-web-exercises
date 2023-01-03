@@ -41,19 +41,19 @@
 			</div>
 		</div>
 		<div class="h2">Build your own pizza!</div>
-		<ul class="nav nav-tabs">
+		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item">
-				<button class="nav-link active" data-bs-toggle="tab" data-bs-target="size-and-crust"><span class="badge rounded-pill bg-secondary">1</span> Size and Crust</button>
+				<button class="nav-link active" role="tab" type="button" id="pizza-tab1" data-bs-toggle="tab" data-bs-target="#size-and-crust"><span class="badge rounded-pill bg-secondary">1</span> Size and Crust</button>
 			</li>
 			<li class="nav-item">
-				<button class="nav-link" data-bs-toggle="tab" data-bs-target="cheese-and-sauce"><span class="badge rounded-pill bg-secondary">2</span> Cheese and Sauce</button>
+				<button class="nav-link" role="tab" type="button" id="pizza-tab2" data-bs-toggle="tab" data-bs-target="#cheese-and-sauce"><span class="badge rounded-pill bg-secondary">2</span> Cheese and Sauce</button>
 			</li>
 			<li class="nav-item">
-				<button class="nav-link" data-bs-toggle="tab" data-bs-target="toppings"><span class="badge rounded-pill bg-secondary">3</span> Toppings</button>
+				<button class="nav-link" role="tab" type="button" id="pizza-tab3" data-bs-toggle="tab" data-bs-target="#toppings"><span class="badge rounded-pill bg-secondary">3</span> Toppings</button>
 			</li>
 		</ul>
 		<div class="tab-content">
-			<div class="card tab-pane fade show active" id="size-and-crust">
+			<div class="card tab-pane fade show active" role="tabpanel" id="size-and-crust">
 				<div class="card-header text-light bg-primary">Choose size and crust</div>
 				<div class="card-body">
 					<div class="card-body">
@@ -97,10 +97,10 @@
 					<button class="btn btn-primary ms-auto">Next Step ></button>
 				</div>
 			</div>
-			<div class="card tab-pane fade" id="cheese-and-sauce">
+			<div class="card tab-pane fade" role="tabpanel" id="cheese-and-sauce">
 				<div class="card-body">filler</div>
 			</div>
-			<div class="card tab-pane fade" id="toppings">
+			<div class="card tab-pane fade" role="tabpanel" id="toppings">
 				<div class="card-body">filler</div>
 			</div>
 		</div>
