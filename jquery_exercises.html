@@ -5,15 +5,35 @@
 	<title>Title</title>
 </head>
 <body>
+<h1 id="my-h1" class="sans-font">Heading</h1>
+<div id="my-div" class="container">
+	<p id="my-p" class="sans-font">Lorem ipsum dolor sit amet.</p>
+	<ul id="codeup" class="border">
+		<li class="codeup">list 1</li>
+		<li class="codeup">list 2</li>
+		<li class="codeup">list 3</li>
+		<li class="">list 4</li>
+	</ul>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous">
 </script>
-
 <script>
-    $(function() {
-        alert( 'The DOM has finished loading!' );
-    });
+    // $(function () {
+    //     alert('The DOM has finished loading!');
+    // });
+    //
+    // console.log($("#my-h1").text());
+    // console.log($("#my-div").text());
+    // console.log($("#my-p").text());
+	//
+	// $(".codeup").css("border", "red 1px solid");
+    // $("#codeup").css("border", "blue 1px dotted");
+
+    $("li").css("font-size", "20px");
+    $("h1, li, p").css("background-color", "rgba(255,213,0,0.25)");
+    alert($("h1").text());
 </script>
 </body>
 </html>
