@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Konami Code</title>
+</head>
+<body>
+<h1 id="my-h1">Konami Code</h1>
+
+
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+<script type="module">
+    "use strict";
+
+    const delay = 2500; //delay in ms
+    const konamiCode = ['ArrowUp', 'ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let userCode = [];
+
+    function arrayEquals(arr1, arr2) {
+        if (arr1.length !== arr2.length) { return false }
+        for (let i = 0; i < arr1.length; i++) {
+	        if (arr1[i] !== arr2[i]) {
+                return false
+	        }
+        }
+        return true;
+    }
+
+    $(document).keyup(function(event){
+        userCode.push(event.key);
+        console.log(userCode);
+        if (arrayEquals(userCode, konamiCode)) {
+            userCode = [];
+			party.confetti($("body")[0], {
+                count: party.variation.range(30, 50),
+			});
+            party.sparkles($("body")[0], {
+                count: party.variation.range(30, 50),
+			});
+		} else if (userCode.length >= konamiCode.length) {
+            console.log("wrong code");
+            userCode = [];
+		} else {
+	        let timerId = setTimeout(function () {
+	            userCode = [];
+				console.log("Timer up", userCode);
+	        }, delay);
+	        $(document).keydown(function (){
+	            clearTimeout(timerId);
+	            $(document).off('keydown');
+	        });
+        }
+    });
+</script>
+</body>
+</html>

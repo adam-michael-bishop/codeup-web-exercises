@@ -3,6 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<style>
+		li {
+			color: green;
+		}
+	</style>
 </head>
 <body>
 <h1 id="my-h1" class="sans-font">Heading</h1>
@@ -34,6 +39,8 @@
     // $("li").css("font-size", "20px");
     // $("h1, li, p").css("background-color", "rgba(255,213,0,0.25)");
     // alert($("h1").text());
+$(document).ready(function () {
+    let hoverColor;
 
     $("#my-h1").click(function () {
         $(this).css("color", "blue");
@@ -44,12 +51,14 @@
     $("li").hover(onHoverEnter, onHoverExit);
 
     function onHoverEnter() {
+        hoverColor = $(this).css("color");
         $(this).css("color", "red");
     }
 
     function onHoverExit() {
-        $(this).css("color", "revert");
+        $(this).css("color", `${hoverColor}`);
     }
+});
 </script>
 </body>
 </html>
