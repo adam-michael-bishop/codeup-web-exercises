@@ -31,9 +31,25 @@
 	// $(".codeup").css("border", "red 1px solid");
     // $("#codeup").css("border", "blue 1px dotted");
 
-    $("li").css("font-size", "20px");
-    $("h1, li, p").css("background-color", "rgba(255,213,0,0.25)");
-    alert($("h1").text());
+    // $("li").css("font-size", "20px");
+    // $("h1, li, p").css("background-color", "rgba(255,213,0,0.25)");
+    // alert($("h1").text());
+
+    $("#my-h1").click(function () {
+        $(this).css("color", "blue");
+    });
+    $("p").dblclick(function () {
+        $(this).css("font-size", "18px");
+    });
+    $("li").hover(onHoverEnter, onHoverExit);
+
+    function onHoverEnter() {
+        $(this).css("color", "red");
+    }
+
+    function onHoverExit() {
+        $(this).css("color", "revert");
+    }
 </script>
 </body>
 </html>
