@@ -7,6 +7,37 @@
         .invisible {
             visibility: hidden;
         }
+
+        #image1 {
+            background-image: url("/img/github-logo.png");
+            background-size: contain;
+            width: 100px;
+            height: 100px;
+        }
+
+        #image2 {
+            background-image: url("/img/pizza.png");
+            background-size: contain;
+            width: 100px;
+            height: 100px;
+        }
+
+        #image3 {
+            background-image: url("/img/pexels-anna-kozlova-11276645 Medium.jpeg");
+            background-size: contain;
+            width: 100px;
+            height: 100px;
+        }
+
+        #picture-box {
+	        display: flex;
+	        flex-wrap: wrap;
+	        width: 300px;
+        }
+
+        button {
+	        max-width: 100px;
+        }
 	</style>
 </head>
 <body>
@@ -101,14 +132,16 @@
 
 <button id="highlighter">Highlight Last Facts</button>
 
-<div id="image1">
+<div id="picture-box">
+	<div id="image1">
+	</div>
+	<div id="image2">
+	</div>
+	<div id="image3">
+	</div>
 	<button id="btn-left">Swap With Middle</button>
-</div>
-<div id="image2">
-	<button id="btn-middle"></button>
-</div>
-<div id="image3">
-	<button id="btn-right"></button>
+	<button id="btn-middle">Swap Left or Right</button>
+	<button id="btn-right">Swap With Middle</button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
@@ -126,6 +159,12 @@
             if (toggleVisible) {
                 $(this).children('.invisible').css("visibility", "hidden");
             }
+        }
+
+        function swapCssProperty(img1, img2, cssPropertyToSwap) {
+            let temp = img1.css(cssPropertyToSwap);
+            img1.css(cssPropertyToSwap, img2.css(cssPropertyToSwap));
+            img2.css(cssPropertyToSwap, temp);
         }
 
         $('#show-all').click(function () {
@@ -158,6 +197,22 @@
 
         $('li').click(function () {
             $(this).parent().children().first().css("color", "blue");
+        });
+
+        $('#btn-left').click(function () {
+            swapCssProperty($('#image1'), $('#image2'), "background-image");
+        });
+
+        $('#btn-middle').click(function (){
+            if (Math.random() >= .5) {
+                swapCssProperty($('#image1'), $('#image2'), "background-image");
+            } else {
+                swapCssProperty($('#image3'), $('#image2'), "background-image");
+            }
+        });
+
+        $('#btn-right').click(function (){
+            swapCssProperty($('#image3'), $('#image2'), "background-image");
         });
     });
 </script>
