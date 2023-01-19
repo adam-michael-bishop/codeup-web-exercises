@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<style>
-		.invisible {
-			visibility: hidden;
-		}
+        .invisible {
+            visibility: hidden;
+        }
 	</style>
 </head>
 <body>
@@ -69,34 +69,97 @@
 </dl>
 <button id="show-all">Show All</button>
 
+<h3 id="arches">Arches</h3>
+<ul id="arches-facts" class="facts">
+	<li>In 1929 President Herbert Hoover created Arches National Monument, then in 1971 Congress designated Arches as a
+		National Park under the Nixon administration.
+	</li>
+	<li>There are more than 2000 natural sandstone arches inside Arches National Park.</li>
+	<li>Landscape Arch has the longest span of any arch in North America, 306 feet (93.3 meters), and is the fourth
+		longest in the world
+	</li>
+	<li>The enormous sandstone boulder atop Balanced Rock is presumed to weigh approximately 3,577 tons!</li>
+</ul>
+<h3 id="badlands">Badlands</h3>
+<ul id="badlands-facts" class="facts">
+	<li>Bison, commonly known as buffalo, can be seen throughout the park.</li>
+	<li>Badlands lies in an ecological area known as a mixed-grass prairie.</li>
+	<li>The Badlands National Park area is known worldwide for its large number of fossil remains.</li>
+	<li>The name Badlands comes from the Lakota, who first called it "mako sica", or "land that is bad".</li>
+</ul>
+<h3 id="joshua">Joshua Tree</h3>
+<ul id="joshua-facts" class="facts">
+	<li>As part of the Desert Protection Bill, Joshua Tree National Monument was elevated to national park status on
+		October 31, 1994.
+	</li>
+	<li>Early explorer John Fremont described Joshua trees as "the most repulsive tree in the vegetable Kingdom".</li>
+	<li>Mormon pioneers thought the limbs of the Joshua trees resembled the upstretched arms of Joshua leading them to
+		the promised land.
+	</li>
+	<li>More than 550,000 acres of Joshua Tree National Park's nearly 800,000 acres are designated as wilderness.</li>
+</ul>
+
+<button id="highlighter">Highlight Last Facts</button>
+
+<div id="image1">
+	<button id="btn-left">Swap With Middle</button>
+</div>
+<div id="image2">
+	<button id="btn-middle"></button>
+</div>
+<div id="image3">
+	<button id="btn-right"></button>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
 <script>
-	$(document).ready(function (){
-		let toggleState = true;
+    $(document).ready(function () {
+        let toggleVisible = true;
+        let toggleBold = true;
 
         function onHoverEnter() {
             $(this).children('.invisible').css('visibility', 'visible');
         }
 
         function onHoverExit() {
-            if (toggleState) {
+            if (toggleVisible) {
                 $(this).children('.invisible').css("visibility", "hidden");
             }
         }
 
-		$('#show-all').click(function (){
-            if (toggleState) {
+        $('#show-all').click(function () {
+            if (toggleVisible) {
                 $(".invisible").css("visibility", "visible");
-                toggleState = false;
+                toggleVisible = false;
             } else {
                 $(".invisible").css("visibility", "hidden");
-				toggleState = true;
+                toggleVisible = true;
             }
-		});
+        });
 
         $('.list-content').hover(onHoverEnter, onHoverExit);
-	});
+
+        $('#highlighter').click(function () {
+            $('.facts').each(function () {
+                $(this).children().last().css("background-color", "yellow");
+            });
+        });
+
+        $('h3').click(function () {
+            if (toggleBold) {
+                $(this).next().children().css("font-weight", "bold");
+                toggleBold = false;
+            } else {
+                $(this).next().children().css("font-weight", "revert");
+                toggleBold = true;
+            }
+        });
+
+        $('li').click(function () {
+            $(this).parent().children().first().css("color", "blue");
+        });
+    });
 </script>
 </body>
 </html>
