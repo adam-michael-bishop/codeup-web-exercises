@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css' rel='stylesheet'/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>Mapbox API</title>
+	<style>
+        #map {
+            height: 500px;
+        }
+	</style>
+</head>
+<body>
+<div id="map" class=""></div>
+<div class="input-group mb-3">
+	<input type="text" class="form-control" id="search-box">
+	<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+		Search and more
+	</button>
+	<ul class="dropdown-menu dropdown-menu-end">
+		<li><button class="dropdown-item" id="move-to">Move to</button></li>
+		<li><button class="dropdown-item" id="add-marker">Move to and add marker</button></li>
+		<li><button class="dropdown-item" href="#">Something else here</button></li>
+	</ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
+<script src="js/keys.js"></script>
+<script>
+    $(document).ready(function () {
+        mapboxgl.accessToken = MAPBOX_API_KEY;
+
+        let map = new mapboxgl.Map({
+            container: "map",
+            style: "mapbox://styles/mapbox/streets-v12",
+            zoom: 12,
+            center: [-98.4916, 29.4252]
+        });
+
+        function addMarkerAndZoomToWithPopup(searchString) {
+            geocode(searchString, MAPBOX_API_KEY)
+                .then(function (result) {
+                    let marker = new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .addTo(map);
+                    map.easeTo({center: result, zoom: 15, duration: 3000})
+                    let popup = new mapboxgl.Popup().setHTML(`<p>${searchString}</p>`)
+                    marker.setPopup(popup)
+                });
+        }
+
+        addMarkerAndZoomToWithPopup("Cullum's Attagirl");
+    });
+</script>
+</body>
+</html>
