@@ -13,16 +13,17 @@
  *  })
  *
  */
-function geocode(search, token) {
+function geocode(search, token, proximity = false) {
     var baseUrl = 'https://api.mapbox.com';
     var endPoint = '/geocoding/v5/mapbox.places/';
-    return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+    return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token + (proximity ? "&proximity=" + proximity[0] + "," + proximity[1] : ''))
         .then(function(res) {
             return res.json();
             // to get all the data from the request, comment out the following three lines...
-        }).then(function(data) {
-            return data.features[0].center;
-        });
+        })
+        // .then(function(data) {
+        //     return data.features[0].center;
+        // });
 }
 
 

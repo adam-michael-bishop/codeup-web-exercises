@@ -14,18 +14,27 @@
 </head>
 <body>
 <div id="map" class=""></div>
-<div class="input-group mb-3">
-	<input type="text" class="form-control" id="search-box">
-	<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-		Search and more
-	</button>
-	<ul class="dropdown-menu dropdown-menu-end">
-		<li><button class="dropdown-item" id="move-to">Move to</button></li>
-		<li><button class="dropdown-item" id="add-marker">Move to and add marker</button></li>
-		<li><button class="dropdown-item" href="#">Something else here</button></li>
-	</ul>
-</div>
+<div class="container my-3">
+	<div class="input-group mb-3">
+		<input type="text" class="form-control" id="search-box" placeholder="Search">
+		<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+			Search and more
+		</button>
+		<ul class="dropdown-menu dropdown-menu-end">
+			<li>
+				<button class="dropdown-item" id="find-button">Find</button>
+			</li>
+			<li>
+				<button class="dropdown-item" id="add-marker-button">Add Marker</button>
+			</li>
+			<li>
+				<button class="dropdown-item" id="restaurant-tour">Restaurant Tour</button>
+			</li>
+		</ul>
+	</div>
+	<div class="container-fluid" id="alert-box"></div>
 
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
@@ -45,19 +54,74 @@
             center: [-98.4916, 29.4252]
         });
 
-        function addMarkerAndZoomToWithPopup(searchString) {
-            geocode(searchString, MAPBOX_API_KEY)
-                .then(function (result) {
-                    let marker = new mapboxgl.Marker()
-                        .setLngLat(result)
-                        .addTo(map);
-                    map.easeTo({center: result, zoom: 15, duration: 3000})
-                    let popup = new mapboxgl.Popup().setHTML(`<p>${searchString}</p>`)
-                    marker.setPopup(popup)
-                });
+        const restaurants = [{
+            name: "Cullum's Attagirl",
+	        description: "The boneless southern fried wings are bussin for real. Beware of the Nashville Hot wings, super spicy. They also offer a select variety of local craft beers that rotates ever so often."
+        }, {
+            name: "Singhs",
+	        description: "The brisket vermicelli bowl is bussin on god. Pretty much everything on the menu is bussin."
+        }, {
+            name: "Pinkerton's Barbecue",
+	        description: "Bussin"
+        }]
+
+        function displayAlertBox() {
+            $('#alert-box').html(
+                `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					Can't find location<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>`)
         }
 
-        addMarkerAndZoomToWithPopup("Cullum's Attagirl");
+        function findLocation(searchString, shouldAddMarker = false, popupHTML = '') {
+            geocode(searchString, MAPBOX_API_KEY, [-98.4916, 29.4252])
+                .then(function (result) {
+                    map.easeTo({center: result.features[0].center, zoom: 15, duration: 3000});
+                    if (shouldAddMarker) {
+                        let marker = new mapboxgl.Marker()
+                            .setLngLat(result.features[0].center)
+                            .addTo(map);
+                        if (popupHTML === '') {
+                            popupHTML = `<p>${result.features[0].place_name}</p>`;
+                        }
+                        let popup = new mapboxgl.Popup().setHTML(popupHTML);
+                        marker.setPopup(popup);
+                    }
+                }).catch(function () {
+					displayAlertBox();
+            });
+        }
+
+        function restaurantTour(restaurantArray) {
+            let promise = Promise.resolve();
+            let interval = 15000;
+			restaurantArray.forEach(function (e){
+                promise = promise.then(function () {
+                    let popupHTML = `<h3>${e.name}</h3><p>${e.description}</p>`
+                    findLocation(e.name, true, popupHTML);
+                    return new Promise(function (resolve){
+                        setTimeout(resolve, interval);
+                    });
+                });
+			});
+        }
+
+        $('#find-button').click(function () {
+            findLocation($('#search-box').val());
+        });
+
+        $('#search-box').keydown(function (event) {
+            if (event.key === "Enter") {
+                findLocation($('#search-box').val());
+            }
+        });
+
+        $('#add-marker-button').click(function () {
+            findLocation($('#search-box').val(), true);
+        });
+
+        $('#restaurant-tour').click(function (){
+            restaurantTour(restaurants);
+        })
     });
 </script>
 </body>
