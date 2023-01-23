@@ -46,6 +46,7 @@
 <script>
     $(document).ready(function () {
         mapboxgl.accessToken = MAPBOX_API_KEY;
+		const bbox = [-98.73348222287596, 29.211945279797206, -98.23339930092273, 29.616504883972382];
 
         let map = new mapboxgl.Map({
             container: "map",
@@ -73,7 +74,7 @@
         }
 
         function findLocation(searchString, shouldAddMarker = false, popupHTML = '') {
-            geocode(searchString, MAPBOX_API_KEY, [-98.4916, 29.4252])
+            geocode(searchString, MAPBOX_API_KEY, bbox)
                 .then(function (result) {
                     map.easeTo({center: result.features[0].center, zoom: 15, duration: 3000});
                     if (shouldAddMarker) {

@@ -13,10 +13,10 @@
  *  })
  *
  */
-function geocode(search, token, proximity = false) {
+function geocode(search, token, bbox = []) {
     var baseUrl = 'https://api.mapbox.com';
     var endPoint = '/geocoding/v5/mapbox.places/';
-    return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token + (proximity ? "&proximity=" + proximity[0] + "," + proximity[1] : ''))
+    return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token + (bbox.length !== 0 ? "&bbox=" + bbox.join(','): ''))
         .then(function(res) {
             return res.json();
             // to get all the data from the request, comment out the following three lines...
