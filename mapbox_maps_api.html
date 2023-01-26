@@ -85,7 +85,8 @@
                             popupHTML = `<p>${result.features[0].place_name}</p>`;
                         }
                         let popup = new mapboxgl.Popup().setHTML(popupHTML);
-                        marker.setPopup(popup);
+                        marker.setPopup(popup)
+	                        .togglePopup();
                     }
                 }).catch(function () {
 					displayAlertBox();
@@ -94,7 +95,7 @@
 
         function restaurantTour(restaurantArray) {
             let promise = Promise.resolve();
-            let interval = 15000;
+            let interval = 10000;
 			restaurantArray.forEach(function (e){
                 promise = promise.then(function () {
                     let popupHTML = `<h3>${e.name}</h3><p>${e.description}</p>`
