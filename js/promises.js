@@ -1,8 +1,12 @@
+/**
+ * This script is loaded in index.html
+ *
+ */
 'use strict';
 
 import {GITHUB_API_KEY} from "./keys.js";
 
-function getUserPublicCommits(username) {
+function getUserPublicEvents(username) {
 	return fetch(`https://api.github.com/users/${username}/events/public`, {headers: {'Authorization': `token ${GITHUB_API_KEY}`}})
 		.then(response => {
 			if (response.ok) {
@@ -16,9 +20,13 @@ function getUserPublicCommits(username) {
 }
 
 async function printDateOfLastPush() {
-	let userPublicCommits = await getUserPublicCommits('adam-michael-bishop');
-	if (userPublicCommits) {
-		console.log(`last commit was on ${userPublicCommits[0].created_at}`);
+	let userPublicEvents = await getUserPublicEvents('adam-michael-bishop');
+	if (userPublicEvents) {
+		// console.log(`last commit was on ${userPublicEvents[0].created_at}`);
+		const lastPushTime = userPublicEvents.filter(event => {
+			return event.type === "PushEvent";
+		})[0].created_at;
+		console.log(lastPushTime);
 	}
 }
 
